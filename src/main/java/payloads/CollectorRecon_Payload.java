@@ -2,7 +2,8 @@ package payloads;
 
 public class CollectorRecon_Payload {
 
-	public String collectorRecon_Payload(String transaction_id, String collector_app_id, String receiver_app_id){
+	public String collectorRecon_Payload(String transaction_id, String bap_id, String bpp_id, String payer_account_number, String settlement_reason_code,
+										 String order_recon_status, String currency, String id, String amount, String invoice_no){
 		String payload = "{\n" +
 				"\n" +
 				"  \"context\": {\n" +
@@ -17,11 +18,11 @@ public class CollectorRecon_Payload {
 				"\n" +
 				"    \"core_version\": \"0.9.3\",\n" +
 				"\n" +
-				"    \"bap_id\": \"abc.collectorapp.com\",\n" +
+				"    \"bap_id\": \""+bap_id+"\",\n" +
 				"\n" +
 				"    \"bap_uri\": \"https://abc.collectorapp.com\",\n" +
 				"\n" +
-				"    \"bpp_id\": \"abc.receiverapp.com\",\n" +
+				"    \"bpp_id\": \""+bpp_id+"\",\n" +
 				"\n" +
 				"    \"bpp_uri\": \"https://abc.receiverapp.com\",\n" +
 				"\n" +
@@ -45,13 +46,13 @@ public class CollectorRecon_Payload {
 				"\n" +
 				"        {\n" +
 				"\n" +
-				"          \"id\": \"K106403902112759\",\n" +
+				"          \"id\": \""+id+"\",\n" +
 				"\n" +
-				"          \"invoice_no\": \"2022/XYZ/12345-2\",\n" +
+				"          \"invoice_no\": \""+invoice_no+"\",\n" +
 				"\n" +
-				"          \"collector_app_id\": \""+collector_app_id+"\",\n" +
+				"          \"collector_app_id\": \"abc.collectorapp.com\",\n" +
 				"\n" +
-				"          \"receiver_app_id\": \""+receiver_app_id+"\",\n" +
+				"          \"receiver_app_id\": \"abc.receiverapp.com\",\n" +
 				"\n" +
 				"          \"state\": \"Delivered\",\n" +
 				"\n" +
@@ -81,9 +82,9 @@ public class CollectorRecon_Payload {
 				"\n" +
 				"              \"transaction_status\": \"SUCCESS\",\n" +
 				"\n" +
-				"              \"amount\": \"1234.00\",\n" +
+				"              \"amount\": \""+amount+"\",\n" +
 				"\n" +
-				"              \"currency\": \"INR\"\n" +
+				"              \"currency\": \""+currency+"\"\n" +
 				"\n" +
 				"            },\n" +
 				"\n" +
@@ -173,7 +174,7 @@ public class CollectorRecon_Payload {
 				"\n" +
 				"          },\n" +
 				"\n" +
-				"          \"order_recon_status\": null,\n" +
+				"          \"order_recon_status\": "+order_recon_status+",\n" +
 				"\n" +
 				"          \"payerdetails\": {\n" +
 				"\n" +
@@ -181,7 +182,7 @@ public class CollectorRecon_Payload {
 				"\n" +
 				"            \"payer_address\": \"Ghaziabad\",\n" +
 				"\n" +
-				"            \"payer_account_no\": 50942492429424,\n" +
+				"            \"payer_account_no\": "+payer_account_number+",\n" +
 				"\n" +
 				"            \"payer_bank_code\": \"HDFC0000000\",\n" +
 				"\n" +
@@ -189,7 +190,7 @@ public class CollectorRecon_Payload {
 				"\n" +
 				"          },\n" +
 				"\n" +
-				"          \"settlement_reason_code\": \"01\",\n" +
+				"          \"settlement_reason_code\": \""+settlement_reason_code+"\",\n" +
 				"\n" +
 				"          \"payout_bank_uri\": \"https://rsp.somebank.com/rsp/\",\n" +
 				"\n" +
@@ -214,7 +215,7 @@ public class CollectorRecon_Payload {
 
 
 
-	
-	
+
+
 
 }

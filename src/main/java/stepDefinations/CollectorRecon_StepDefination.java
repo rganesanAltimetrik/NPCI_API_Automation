@@ -25,13 +25,15 @@ public class CollectorRecon_StepDefination extends CollectorRecon_Entity {
 	CollectorRecon_Payload data =new CollectorRecon_Payload();
 
 
-	@Given("Add Collector Recon Payload with {string} {string} {string}")
-	public void add_Collector_Recon_Payload_with(String transaction_id, String collector_app_id, String receiver_app_id) throws IOException {
+	@Given("Add Collector Recon Payload with {string} {string} {string} {string} {string} {string} {string} {string} {string} {string}")
+	public void add_Collector_Recon_Payload_with(String transaction_id, String bap_id, String bpp_id, String payer_account_number, String settlement_reason_code,
+												 String order_recon_status, String currency, String id, String amount, String invoice_no) throws IOException {
 		if(transaction_id.equals("random")){
 			transaction_id = generateTranscationID();
 		}
 		res= RestAssured.given().spec(collectorRecon_RequestSpecification())
-				.body(data.collectorRecon_Payload(transaction_id, collector_app_id, receiver_app_id));
+				.body(data.collectorRecon_Payload(transaction_id, bap_id, bpp_id, payer_account_number, settlement_reason_code,
+						order_recon_status, currency, id, amount, invoice_no));
 	}
 
 	@When("user calls {string} with {string} http request for Collector Recon")
@@ -50,12 +52,11 @@ public class CollectorRecon_StepDefination extends CollectorRecon_Entity {
 		Assert.assertEquals(statusCode, response.getStatusCode());
 	}
 
-	@Then("{string} in response body is {string} for Collector Recon")
-	public void in_response_body_is(String keyValue, String Expectedvalue) {
+	@Then("validate the {string} is available in response body of Collector Recon")
+	public void validate_the_is_available_in_response_body_of_collector_recon(String value) {
 		ResponseBody body = response.getBody();
 		String bodyAsString = body.asString();
-		Assert.assertEquals(bodyAsString.toLowerCase().contains(keyValue), true);
+		Assert.assertEquals(bodyAsString.contains(value), true);
 	}
-
 
 }
