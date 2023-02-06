@@ -21,7 +21,7 @@ Body:
         "bap_uri": "https://abc.collectorapp.com",
         "bpp_id": "abc.receiverapp.com",
         "bpp_uri": "https://abc.receiverapp.com",
-        "transaction_id": "lJpuQ-FL7SX-d5GMR-ilyfC-q5Eps",
+        "transaction_id": "1234-5678-0123",
         "message_id": "6baa811a-6cbe-4ad3-94e9-cbf96aaff343",
         "timestamp": "2022-10-28T10:34:58.469Z",
         "key": "string",
@@ -34,7 +34,7 @@ Body:
                     "id": "K106403902112759",
                     "invoice_no": "2022/XYZ/12345-2",
                     "collector_app_id": "abc.collectorapp.com",
-                    "receiver_app_id": "abc.collectorapp.com",
+                    "receiver_app_id": "abc.receiverapp.com",
                     "state": "Delivered",
                     "provider": {
                         "name": {
@@ -113,17 +113,23 @@ Body:
         }
     }
 }
-HTTP/1.1 201 Created
+HTTP/1.1 409 Conflict
 Content-Type: application/json
-Date: Fri, 06 Jan 2023 17:01:36 GMT
+Date: Thu, 12 Jan 2023 14:02:33 GMT
 Server: nginx/1.22.0
-Content-Length: 36
+x-request-id: 1e675129-796822
+Content-Length: 122
 Connection: keep-alive
 
 {
     "message": {
         "ack": {
-            "status": "ACK"
+            "status": "NACK"
         }
+    },
+    "error": {
+        "code": "06",
+        "path": "/api/v1/collector_recon",
+        "message": "Duplicate Request"
     }
 }
